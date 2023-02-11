@@ -1,0 +1,15 @@
+[windows]
+windows2016 ansible_host=10.10.10.6 ansible_user=Administrator ansible_password=i@mW1N!
+windows2019 ansible_host=10.10.10.2 ansible_user=Administrator ansible_password=P@$$w0rd!
+
+[linux]
+debian ansible_host=10.10.10.7 ansible_user=deb ansible_password=i@mD3B!
+ubuntu ansible_host=127.0.0.1 ansible_user=splunk ansible_password=i@mSplunk1
+
+[windows:vars]
+ansible_connection=winrm
+ansible_winrm_port=5985
+ansible_winrm_transport=ntlm
+
+[linux:vars]
+ansible_connection=ssh

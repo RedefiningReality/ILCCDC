@@ -29,7 +29,7 @@ If red team accesses the Ubuntu Workstation, they will have control over the net
 
 **Note:** I might decide to put all Ansible configurations in an inconspicuous hidden directory just in case red team makes it onto the Ubuntu Workstation (although that should be impossible). I still haven't decided whether or not this is worth it. The following instructions assume I don't do that.
 1. Configure the Palo Alto firewall as defined in Network Configuration.pdf
-   - Steps 1 and 2 can be completed simultaneously by two different team members, BUT outgoing traffic to all other networks must be allowed for the Ubuntu Workstation before the following steps can be completed.
+   - For the most part, steps 1 and 2 can be completed simultaneously by two different team members, BUT outgoing traffic to all other networks must be allowed for the Ubuntu Workstation before the following steps can be completed.
 2. Run `install-ansible.sh` on the Ubuntu Workstation. This will do the following:
    1. Ensure the workstation is using the latest Ubuntu repositories
    2. Update Python3 using apt

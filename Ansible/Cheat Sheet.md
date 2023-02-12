@@ -12,6 +12,4 @@
 
 ### Playbook
 - `ansible-playbook [playbook].yml`
-
-   or
 - `ansible-playbook -i [hosts file] [playbook].yml --[variable]=[value]`

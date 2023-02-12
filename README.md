@@ -36,5 +36,7 @@ If red team accesses the Ubuntu Workstation, they will have control over the net
    5. Implement ufw firewall rules to only allow outgoing connections on tcp/22 and tcp/5985
 2. Configure the Palo Alto firewall as defined in Network Configuration.pdf
    - Tasks 1 and 2 can be completed simultaneously by two different team members
-3. Run `ansible-playbook secure-design.yml` on the Ubuntu Workstation. This will transition from Ansible (insecure design) as defined above to Ansible (secure design) as defined above.
-5. Run `ansible-playbook harden.yml` on the Ubuntu Workstation. This is a master playbook that will call all the other playbooks required to harden the machines.
+3. Run `ansible-playbook secure-design.yml` on the Ubuntu Workstation
+This will transition from Ansible (insecure design) as defined above to Ansible (secure design) as defined above.
+5. Run `ansible-playbook harden.yml` on the Ubuntu Workstation
+This is a master playbook that will call all the other playbooks required to harden the machines.

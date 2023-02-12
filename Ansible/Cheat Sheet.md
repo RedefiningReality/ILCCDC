@@ -6,6 +6,11 @@
 - Linux: `ansible linux -m ping`
 - Windows: `ansible windows -m win_ping`
 
-### Shell Command
+### Command
 - Linux: `ansible linux -m shell -a "[command]"`
 - Windows: `ansible windows -m win_shell -a "[command]"`
+
+### Playbook
+- ansible-playbook [playbook].yml
+or
+- ansible-playbook -i [hosts file] [playbook].yml --[variable]=[value]

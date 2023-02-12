@@ -11,6 +11,6 @@
 - Windows: `ansible windows -m win_shell -a "[command]"`
 
 ### Playbook
-- ansible-playbook [playbook].yml
+- `ansible-playbook [playbook].yml`
 or
-- ansible-playbook -i [hosts file] [playbook].yml --[variable]=[value]
+- `ansible-playbook -i [hosts file] [playbook].yml --[variable]=[value]`

@@ -28,14 +28,14 @@ If red team accesses the Ubuntu Workstation, they will have control over the net
 *to be edited*
 
 **Note:** I might decide to put all Ansible configurations in an inconspicuous hidden directory just in case red team makes it onto the Ubuntu Workstation (although that should be impossible). I still haven't decided whether or not this is worth it. The following instructions assume I don't do that.
-1. Run `install-ansible.sh` on the Ubuntu Workstation. This will do the following:
+1. Configure the Palo Alto firewall as defined in Network Configuration.pdf
+   - Tasks 1 and 2 can be completed simultaneously by two different team members, BUT outgoing traffic to all other networks must be allowed for the Ubuntu Workstation before the following steps can be completed.
+2. Run `install-ansible.sh` on the Ubuntu Workstation. This will do the following:
    1. Ensure the workstation is using the latest Ubuntu repositories
    2. Update Python3 using apt
    3. Install Ansible using the Python3 pip module
    4. Copy the correct ansible.cfg and hosts (inventory) files to the /etc/ansible directory
    5. Implement ufw firewall rules to only allow outgoing connections on tcp/22 and tcp/5985
-2. Configure the Palo Alto firewall as defined in Network Configuration.pdf
-   - Tasks 1 and 2 can be completed simultaneously by two different team members
 3. Run `ansible-playbook secure-design.yml` on the Ubuntu Workstation. This will transition all hosts from Ansible (insecure design) as defined above to Ansible (secure design) as defined above.
 4. Run `ansible-secure.sh` on the Ubuntu Workstation. This will update the ansible.cfg and hosts (inventory) files on the Ubuntu Workstation so that future calls to Ansible playbooks will use Ansible (secure design). It will also block outgoing connections on tcp/5985 (WinRM over HTTP) and allow them on tcp/5986 (WinRM over HTTPS). I might be able to include this step in the playbook for the previous step, in which case we won't have to do this. I'm not sure yet.
 5. Run `ansible-playbook harden.yml` on the Ubuntu Workstation. This is a master playbook that will call all the other playbooks required to harden the hosts.

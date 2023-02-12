@@ -16,7 +16,7 @@ This means there are going to be two Ansible configurations:
 - Windows: WinRM over HTTP (tcp/5985) via NTLM authentication
 #### Ansible (secure design)
 - Linux: SSH (tcp/22) via key-based authentication
-  - Access root user via sudo
+  - Access root user via become on all hosts
 - Windows: WinRM over HTTPS (tcp/5986) via CredSSP
 
 ### Potential Risks

@@ -1,0 +1,76 @@
+
+Host Name:                 PENGUININATOR
+OS Name:                   Microsoft Windows Server 2016 Standard
+OS Version:                10.0.14393 N/A Build 14393
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Server
+OS Build Type:             Multiprocessor Free
+Registered Owner:          Windows User
+Registered Organization:   
+Product ID:                00377-70000-18298-AA877
+Original Install Date:     3/30/2017, 3:59:47 PM
+System Boot Time:          2/12/2023, 10:55:55 PM
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System Type:               x64-based PC
+Processor(s):              2 Processor(s) Installed.
+                           [01]: AMD64 Family 25 Model 1 Stepping 1 AuthenticAMD ~3194 Mhz
+                           [02]: AMD64 Family 25 Model 1 Stepping 1 AuthenticAMD ~3194 Mhz
+BIOS Version:              Phoenix Technologies LTD 6.00, 11/12/2020
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-06:00) Central Time (US & Canada)
+Total Physical Memory:     8,191 MB
+Available Physical Memory: 6,518 MB
+Virtual Memory: Max Size:  9,471 MB
+Virtual Memory: Available: 8,018 MB
+Virtual Memory: In Use:    1,453 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\PENGUININATOR
+Hotfix(s):                 3 Hotfix(s) Installed.
+                           [01]: KB3199986
+                           [02]: KB4485447
+                           [03]: KB4487006
+Network Card(s):           6 NIC(s) Installed.
+                           [01]: Intel(R) 82574L Gigabit Network Connection
+                                 Connection Name: Ethernet0
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                           [02]: Hyper-V Virtual Ethernet Adapter
+                                 Connection Name: vEthernet (HNS Internal NIC)
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     255.255.255.255
+                                 IP address(es)
+                                 [01]: 172.18.0.1
+                                 [02]: fe80::5965:51e0:8fca:c7b9
+                           [03]: Hyper-V Virtual Ethernet Adapter
+                                 Connection Name: vEthernet (HNS Internal NIC) 2
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     255.255.255.255
+                                 IP address(es)
+                                 [01]: 172.29.32.1
+                                 [02]: fe80::542f:f214:2918:b8ec
+                           [04]: Hyper-V Virtual Ethernet Adapter
+                                 Connection Name: vEthernet (DockerNAT)
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                                 [01]: 10.0.75.1
+                                 [02]: fe80::dde6:a880:faed:42c8
+                           [05]: Hyper-V Virtual Ethernet Adapter
+                                 Connection Name: vEthernet (HNS Internal NIC) 3
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     255.255.255.255
+                                 IP address(es)
+                                 [01]: 172.17.16.1
+                                 [02]: fe80::a848:5b6d:59a2:5f9f
+                           [06]: Hyper-V Virtual Ethernet Adapter
+                                 Connection Name: vEthernet (Private)
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                                 [01]: 172.20.240.10
+                                 [02]: fe80::6429:7c3f:8f6b:59cf
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.

@@ -1,3 +1,0 @@
-- no SSH server on Ubuntu workstation
-- Python2 on splunk outdated and mirrors too old to use
-- Python on CentOS7 outdated, but it can be updated with `yum update` and `yum install -y python3`

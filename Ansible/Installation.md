@@ -1,0 +1,8 @@
+- in PowerShell: `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
+  - when it asks to reboot, type Y
+- in Command Prompt: `bash`
+- navigate to https://aka.ms/wslstore
+  - choose Debian and click "Get"
+- once installed, open by selecting Debian from start menu
+- `sudo apt update && sudo apt install python3 python3-pip sshpass --upgrade -y`
+- `python3 -m pip install ansible pywinrm`

@@ -3,7 +3,7 @@
   - might have to fix DNS - then try `ping google.com`
   - `sudo apt-get update`
   - `sudo apt-get install -y openssh-server python --upgrade`
-- Python on splunk outdated and mirrors too old to use
-- Python on CentOS7 outdated
+- Python on Splunk outdated and mirrors too old to use
+- Python on Fedora21 outdated
   - `yum update` (this takes a while)
   - `yum install -y python3`

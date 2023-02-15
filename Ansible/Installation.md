@@ -6,3 +6,7 @@
 - once installed, open by selecting Debian from start menu
 - `sudo apt update && sudo apt install python3 python3-pip sshpass --upgrade -y`
 - `python3 -m pip install ansible pywinrm`
+### Things to know
+- WSL files located at %LOCALAPPDATA%\Lxss\
+- Windows C drive mounted on Linux at /mnt/c
+  - you can create a link to a folder there with `ln -s /mnt/c/[windows path] [linux path]`

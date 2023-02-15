@@ -6,4 +6,4 @@
 - Python on Splunk outdated and mirrors too old to use
 - Python on Fedora21 outdated
   - `yum update` (this takes a while)
-  - `yum install -y python`
+  - `yum install python`

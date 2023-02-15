@@ -4,7 +4,7 @@
 - navigate to https://aka.ms/wslstore
   - choose Debian and click "Get"
 - once installed, open by selecting Debian from start menu
-- `sudo apt update && sudo apt install git python3 python3-pip sshpass --upgrade -y`
+- `sudo apt update && sudo apt install -y git python3 python3-pip sshpass --upgrade`
 - `sudo su` if, like me, you prefer running commands as root user
 - edit ~/.profile and add the following line: `export LC_ALL="en_US.UTF-8"`
   - run `. ~/.profile` to source the file and add the LC_ALL environment variable

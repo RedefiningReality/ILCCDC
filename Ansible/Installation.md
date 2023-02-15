@@ -11,7 +11,8 @@
   - you can test to make sure it's there with `locale`
 - `python3 -m pip install ansible pywinrm`
 - in Windows: open Settings -> Network & Internet -> Change connection properties -> under IP settings, Edit -> change gateway to 172.31.24.2
-  - this will disconnect you from the internet but provide you access to all internal machines
+  - this will disconnect you from the internet but provide you access to the competition environment
+  - change the gateway back to 172.31.24.1 for anything that requires internet access (eg. downloading packages)
 ### Things to know
 - WSL files located at %LOCALAPPDATA%\Lxss\
 - Windows C drive mounted on Linux at /mnt/c/

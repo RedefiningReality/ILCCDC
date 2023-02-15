@@ -5,10 +5,10 @@
   - `sudo apt-get install -y openssh-server python --upgrade`
 - Python on Splunk outdated and mirrors too old to use
 - Python 3 on Fedora21 outdated and mirrors contain only outdated versions
+  - `yum install zlib-devel`
   - `wget https://www.python.org/ftp/python/3.5.8/Python-3.5.8.tgz`
   - `tar -xf Python-3.5.8.tgz`
   - `cd Python-3.5.8`
   - `./configure --enable-optimizations`
   - `make altinstall`
-  - `ln -s /root/Python-3.5.8/python /usr/bin/python3`
-  - Ran into zlib not available error on Ansible - might debug this later
+  - run with `python3.5` (not necessary to do - just a note)

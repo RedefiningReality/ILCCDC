@@ -10,6 +10,8 @@
   - run `. ~/.profile` to source the file and add the LC_ALL environment variable
   - you can test to make sure it's there with `locale`
 - `python3 -m pip install ansible pywinrm`
+- in Windows: open Settings -> Network & Internet -> Change connection properties -> under IP settings, Edit -> change gateway to 172.31.24.2
+  - this will disconnect you from the internet but provide you access to all internal machines
 ### Things to know
 - WSL files located at %LOCALAPPDATA%\Lxss\
 - Windows C drive mounted on Linux at /mnt/c/

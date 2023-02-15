@@ -8,5 +8,5 @@
 - `python3 -m pip install ansible pywinrm`
 ### Things to know
 - WSL files located at %LOCALAPPDATA%\Lxss\
-- Windows C drive mounted on Linux at /mnt/c
+- Windows C drive mounted on Linux at /mnt/c/
   - you can create a link to a folder there with `ln -s /mnt/c/[windows path] [linux path]`

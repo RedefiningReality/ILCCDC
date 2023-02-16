@@ -8,7 +8,7 @@ $regex = "(?<!\d|\.)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?!\d|\.)"
 $dirsToSearch | ForEach-Object {
     $dir = $_
     if(Test-Path $dir -PathType Container){
-        Get-ChildItem -Path $dir -Recurse -File | ForEach-Object {
+        Get-ChildItem -Path $dir -Recurse -File -Force | ForEach-Object {
             $filePath = $_.FullName
             Get-Content $filePath | Select-String $regex -AllMatches | ForEach-Object {
                 $_.Matches | ForEach-Object {

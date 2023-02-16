@@ -1,4 +1,4 @@
-### Ansible Configurations
+### Debugging
 - Test ansible.cfg file: `ansible-config dump --only-changed`
 - Test inventory (hosts) file: `ansible-inventory -i [file] --list`
 - Check playbook syntax: `ansible-playbook [playbook].yml --check-syntax`

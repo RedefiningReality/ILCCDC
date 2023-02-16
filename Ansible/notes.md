@@ -12,6 +12,7 @@
   - `./configure --enable-optimizations`
   - `make altinstall`
   - run with `python3.5` (not necessary to do - just a note)
+  - optional: `ln -s /usr/local/bin/python3.5 /usr/bin/python3`
 - Windows 2016 firewall is blocking access from external subnets
   - either update Windows Firewall rule (not recommended) or do the following:
   - in Palo Alto GUI: POLICIES -> NAT -> source zone: external, destination zone: internal, source address: 172.31.24.5, static-ip 172.20.240.3, bi-directional: yes -> Commit

@@ -1,3 +1,5 @@
+- need Ansible SSH keypair on Windows 10
+  - 
 - no SSH server on Ubuntu workstation and mirrors too old to use
   - `sudo sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list`
   - might have to fix DNS - then try `ping google.com`

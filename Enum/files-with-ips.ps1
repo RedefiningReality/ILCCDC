@@ -5,10 +5,10 @@ $dirsToSearch = @("C:\Program Files", "C:\Program Files (x86)", "C:\Users", "C:\
 $regex = "(?<!\d|\.)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?!\d|\.)"
 
 # Loop through each directory and search for matching files
-$dirsToSearch | ForEach-Object -Parallel {
+$dirsToSearch | ForEach-Object {
     $dir = $_
     if(Test-Path $dir -PathType Container){
-        Get-ChildItem -Path $dir -Recurse -File | ForEach-Object -Parallel {
+        Get-ChildItem -Path $dir -Recurse -File | ForEach-Object {
             $filePath = $_.FullName
             Get-Content $filePath | Select-String $regex -AllMatches | ForEach-Object {
                 $_.Matches | ForEach-Object {
@@ -21,4 +21,4 @@ $dirsToSearch | ForEach-Object -Parallel {
             }
         }
     }
-} -ThrottleLimit 5
+}

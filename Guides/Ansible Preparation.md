@@ -16,6 +16,7 @@
 - Windows 2016 firewall is blocking access from external subnets
   - either update Windows Firewall rule (not recommended) or do the following:
   - in Palo Alto GUI: POLICIES -> NAT -> source zone: external, destination zone: internal, source address: 172.31.24.5, static-ip 172.20.240.3, bi-directional: yes -> Commit
+  - if you followed the competition day checklist, you shouldn't have to do this
 - Windows 2012 (AD/DHCP/DNS) results in StackOverflowException
   - apparently this is a known issue and can be fixed by increasing PowerShell memory, but that didn't work for me :(
 - WinRM not installed on Windows 10

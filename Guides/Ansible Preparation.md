@@ -1,5 +1,7 @@
 - need Ansible SSH keypair on Windows 10
-  - 
+  - transfer [ssh-keypair.sh](../Scripts/ssh-keypair.sh) onto WSL
+  - `chmod +x ssh-keypair.sh`
+  - `./ssh-keypair.sh`
 - no SSH server on Ubuntu workstation and mirrors too old to use
   - `sudo sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list`
   - might have to fix DNS - then try `ping google.com`

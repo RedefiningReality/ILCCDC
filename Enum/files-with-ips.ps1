@@ -1,17 +1,24 @@
-$searchRegex = "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
-$outFile = "C:\results.txt"
+# Define the directories to search
+$dirsToSearch = @("C:\Program Files", "C:\Program Files (x86)", "C:\Users", "C:\Icow")
 
-$directories = @("C:\Program Files", "C:\Program Files (x86)", "C:\Users", "C:\Icow")
-foreach ($dirPath in $directories) {
-    if (Test-Path $dirPath) {
-        Get-ChildItem -Path $dirPath -Recurse -File | ForEach-Object -Parallel {
+# Define the regular expression to search for
+$regex = "(?<!\d|\.)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?!\d|\.)"
+
+# Loop through each directory and search for matching files
+$dirsToSearch | ForEach-Object -Parallel {
+    $dir = $_
+    if(Test-Path $dir -PathType Container){
+        Get-ChildItem -Path $dir -Recurse -File | ForEach-Object -Parallel {
             $filePath = $_.FullName
-            $fileContents = Get-Content $filePath -Raw
-            $matches = Select-String -InputObject $fileContents -Pattern $searchRegex -AllMatches
-            foreach ($match in $matches) {
-                $matchText = "{0}:{1}:{2}" -f $filePath, ($match.LineNumber), $match.Matches[0].Value
-                Out-File -FilePath $outFile -Append -InputObject $matchText
+            Get-Content $filePath | Select-String $regex -AllMatches | ForEach-Object {
+                $_.Matches | ForEach-Object {
+                    $lineNumber = $_.LineNumber
+                    $ipAddress = $_.Value
+                    $output = "{0}: {1}: {2}" -f $filePath, $lineNumber, $ipAddress
+                    $output | Tee-Object -FilePath "C:\results.txt" -Append
+                    Write-Host $output
+                }
             }
         }
     }
-}
+} -ThrottleLimit 5

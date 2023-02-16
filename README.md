@@ -29,7 +29,7 @@ If red team accesses the Windows 10, they will have control over the network. To
 
 **Note:** I might decide to put all Ansible configurations in an inconspicuous hidden directory just in case red team makes it onto the Windows 10 (although that should be impossible). I still haven't decided whether or not this is worth it. The following instructions assume I don't do that.
 1. Add Windows 10 Internal, User, and Public NAT rules to the Palo Alto to allow the Windows 10 to be in the same subnet as the other hosts.
-2. Download this repo on the Windows 10 and unzip it.
+2. Download this repo on the Windows 10 and unzip it. Also install [Wise Folder Hider](https://www.wisecleaner.com/wise-folder-hider.html) for step 9.
 3. Install WSL, Debian, and Ansible as explained in the [Ansible installation guide](Guides/Ansible%20Installation.md).
 4. Prepare all the hosts for communicating with Ansible as explained in [Ansible prep guide](Guides/Ansible%20Preparation.md).
 5. Copy files from the Ansible/config/insecure directory to /etc/ansible on the Windows 10 WSL Debian.

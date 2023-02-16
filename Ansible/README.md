@@ -1,7 +1,7 @@
 ### Debugging
 - Test ansible.cfg file: `ansible-config dump --only-changed`
 - Test inventory (hosts) file: `ansible-inventory -i [file] --list`
-- Check playbook syntax: `ansible-playbook [playbook].yml --check-syntax`
+- Check playbook syntax: `ansible-playbook [playbook].yml --syntax-check`
 
 ### Ping
 - Linux: `ansible linux -m ping`

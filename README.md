@@ -38,4 +38,5 @@ If red team accesses the Windows 10, they will have control over the network. To
 8. Run `ansible-playbook master.yml` on the Windows 10 WSL. This is a master playbook that will call all the other playbooks required to harden the hosts.
 9. Create a password-locked (vault) folder using the instructions in the [Windows 10 vault guide](Guides/Windows%2010%20Vault.md), and move passwords.txt and old_passwords.txt to this folder.
 10. Implement Windows 10 firewall to block all incoming connections and only allow outgoing connections on ports tcp/22 and tcp/5986. I have yet to decide how to approach this.
-11. Implement Palo Alto firewall rules and fix DHCP as defined in [Network Information.pdf](Network%20Information.pdf)
+11. Implement Palo Alto firewall rules and fix DHCP as defined in [Network Information.pdf](Network%20Information.pdf).
+12. Change Palo Alto SSH password and GUI password.

@@ -18,6 +18,8 @@
   - in Palo Alto GUI: POLICIES -> NAT -> source zone: external, destination zone: internal, source address: 172.31.24.5, static-ip 172.20.240.3, bi-directional: yes -> Commit
   - if you followed the competition day checklist, you shouldn't have to do this
 - Windows 2012 (AD/DHCP/DNS) results in StackOverflowException
-  - apparently this is a known issue and can be fixed by increasing PowerShell memory, but that didn't work for me :(
+  - download https://s3.amazonaws.com/ansible-ci-files/hotfixes/KB2842230/463941_intl_x64_zip.exe
+  - run it to extract the needed hotfix exe
+  - run the extracted hotfix exe
 - WinRM not installed on Windows 10
   - `winrm quickconfig`

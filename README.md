@@ -33,10 +33,9 @@ If red team accesses the Windows 10, they will have control over the network. To
 3. Install WSL, Debian, and Ansible as explained in the [Ansible installation guide](Guides/Ansible%20Installation.md).
 4. Prepare all the hosts for communicating with Ansible as explained in [Ansible prep guide](Guides/Ansible%20Preparation.md).
 5. Copy files from the Ansible/config/insecure directory to /etc/ansible on the Windows 10 WSL Debian.
-6. Change default gateway from 172.31.24.1 to 172.31.24.2 so that all traffic goes to Palo Alto and gets forwarded to the internal network. You'll have to change this back if you want to use the internet.
-7. Run `ansible-playbook secure-design.yml` on the Windows 10 WSL. This will transition all hosts except Splunk from Ansible (insecure design) as defined above to Ansible (secure design) as defined above.
-8. Run secure-splunk.sh on the Splunk machine. This will disable SSH (outdated and vulnerable to RCE) and firewall every port except those required to access the web UI. It will also only make the web UI accessible from one of the internal machines.
-9. Run `ansible-playbook master.yml` on the Windows 10 WSL. This is a master playbook that will call all the other playbooks required to harden the hosts.
-10. Create a password-locked (vault) folder using the instructions in the [Windows 10 vault guide](Guides/Windows%2010%20Vault.md), and move passwords.txt and old_passwords.txt to this folder.
-11. Implement Windows 10 firewall to block all incoming connections and only allow outgoing connections on ports tcp/22 and tcp/5986. I have yet to decide how to approach this.
-12. Implement Palo Alto firewall rules as defined in [Network Information.pdf](Network%20Information.pdf)
+6. Run `ansible-playbook secure-design.yml` on the Windows 10 WSL. This will transition all hosts except Splunk from Ansible (insecure design) as defined above to Ansible (secure design) as defined above.
+7. Run secure-splunk.sh on the Splunk machine. This will disable SSH (outdated and vulnerable to RCE) and firewall every port except those required to access the web UI. It will also only make the web UI accessible from one of the internal machines.
+8. Run `ansible-playbook master.yml` on the Windows 10 WSL. This is a master playbook that will call all the other playbooks required to harden the hosts.
+9. Create a password-locked (vault) folder using the instructions in the [Windows 10 vault guide](Guides/Windows%2010%20Vault.md), and move passwords.txt and old_passwords.txt to this folder.
+10. Implement Windows 10 firewall to block all incoming connections and only allow outgoing connections on ports tcp/22 and tcp/5986. I have yet to decide how to approach this.
+11. Implement Palo Alto firewall rules as defined in [Network Information.pdf](Network%20Information.pdf)

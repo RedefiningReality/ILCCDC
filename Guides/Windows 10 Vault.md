@@ -4,4 +4,4 @@
 - close the Wise Folder Hider GUI
 - if you need access to the folder, open Wise Folder Hider -> enter password -> click Open
 
-**Note:** Folder will be completely inaccessible from the command line.
+**Note:** Locker folder will be completely inaccessible from the command line. You can store password files here.

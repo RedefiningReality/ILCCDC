@@ -9,7 +9,7 @@
 - edit ~/.profile and add the following line: `export LC_ALL="en_US.UTF-8"`
   - run `. ~/.profile` to source the file and add the LC_ALL environment variable
   - you can test to make sure it's there with `locale`
-- `python3 -m pip install ansible pywinrm`
+- `python3 -m pip install ansible pywinrm pywinrm[credssp]`
 - copy contents of [Ansible/config](../Ansible/config) folder to /etc/ansible
 - in Windows: open Settings -> Network & Internet -> Change connection properties -> under IP settings, Edit -> change "Gateway" to 172.31.24.2
   - this will disconnect you from the internet but provide you access to the competition environment

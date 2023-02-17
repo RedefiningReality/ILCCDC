@@ -3,6 +3,11 @@
   - `chmod +x ssh-keypair.sh`
   - `./ssh-keypair.sh`
   - DO NOT SET A PASSWORD -> just press enter
+    - if you accidentally set a password, enter the following:
+```
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/ansible_id_rsa
+```
 - no SSH server on Ubuntu workstation and mirrors too old to use
   - `sudo sed -i -re 's/([a-z]{2}\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list`
   - might have to fix DNS - then try `ping google.com`

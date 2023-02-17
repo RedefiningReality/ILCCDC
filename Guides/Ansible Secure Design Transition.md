@@ -10,4 +10,4 @@ ansible_password: [password]
 ansible_become_password: [password]
 ```
 - ensure vault.yml is in the same directory as all other playbooks
-- run all future ansible-playbook commands with the `--ask-vault-pass` option
+- run all future ansible-playbook commands with the `-e @vault.yml --ask-vault-pass` options

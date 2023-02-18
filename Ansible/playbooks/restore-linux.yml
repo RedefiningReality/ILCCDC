@@ -7,6 +7,7 @@
     local_name: backup.tar.gz
     remote_path: /root/.kitten/backups
     remote_name: backup.tar.gz
+  tasks:
   - name: Obtain stats for local backup on host
     ansible.builtin.stat:
       path: "{{ local_path }}/{{ local_name }}"

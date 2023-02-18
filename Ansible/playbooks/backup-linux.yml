@@ -1,0 +1,36 @@
+---
+- hosts: "{{ host | default('ubuntu14') }}"
+  become: yes
+  vars:
+    dir: /var/www/html
+    local_path: /opt/.kitten
+    local_name: backup.tar.gz
+    remote_path: /root/.kitten/backups
+    remote_name: backup.tar.gz
+  tasks:
+  - name: Create local backup directory
+    ansible.builtin.file:
+      path: "{{ local_path }}"
+      state: directory
+      owner: root
+      group: root
+      mode: 0600
+  - name: Create remote backup directory
+    ansible.builtin.file:
+      path: "{{ remote_path }}"
+      state: directory
+      owner: root
+      group: root
+      mode: 0600
+    delegate_to: localhost
+  - name: Backup locally
+    community.general.archive:
+      path: "{{ dir }}"
+      dest: "{{ local_path }}/{{ local_name }}"
+      format: gz
+      force_archive: true
+  - name: Backup remotely
+    ansible.builtin.fetch:
+      src: "{{ local_path }}/{{ local_name }}"
+      dest: "{{ remote_path }}/{{ remote_name }}"
+...

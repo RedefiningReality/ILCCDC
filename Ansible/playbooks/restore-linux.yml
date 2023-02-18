@@ -1,0 +1,48 @@
+---
+- hosts: "{{ host | default('ubuntu14') }}"
+  become: yes
+  vars:
+    dir: /var/www/html
+    local_path: /opt/.kitten
+    local_name: backup.tar.gz
+    remote_path: /root/.kitten/backups
+    remote_name: backup.tar.gz
+  - name: Obtain stats for local backup on host
+    ansible.builtin.stat:
+      path: "{{ local_path }}/{{ local_name }}"
+      get_attributes: false
+      get_mime: false
+      fail_on_missing: false
+    register: local
+  - name: Obtain stats for remote backup on Ansible
+    ansible.builtin.stat:
+      path: "{{ remote_path }}/{{ remote_name }}"
+      get_attributes: false
+      get_mime: false
+    register: remote
+  - name: Restore local backup
+    ansible.builtin.unarchive:
+      src: "{{ local_path }}/{{ local_name }}"
+      dest: "{{ dir }}"
+      remote_src: yes
+      mode: 0755
+      owner: root
+      group: root
+    when: remote.stat.checksum == local.stat.checksum
+  - name: Restore remote backup
+    ansible.builtin.unarchive:
+      src: "{{ remote_path }}/{{ remote_name }}"
+      dest: "{{ dir }}"
+      mode: 0755
+      owner: root
+      group: root
+    when: remote.stat.checksum != local.stat.checksum
+  - name: Fix local backup
+    ansible.builtin.copy:
+      src: "{{ remote_path }}/{{ remote_name }}"
+      dest: "{{ local_path }}/{{ local_name }}"
+      owner: root
+      group: root
+      mode: 0600
+    when: remote.stat.checksum != local.stat.checksum
+...

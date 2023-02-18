@@ -13,7 +13,6 @@
       path: "{{ local_path }}/{{ local_name }}"
       get_attributes: false
       get_mime: false
-      fail_on_missing: false
     register: local
   - name: Obtain stats for remote backup on Ansible
     ansible.builtin.stat:

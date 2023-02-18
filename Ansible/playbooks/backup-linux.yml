@@ -25,7 +25,7 @@
     delegate_to: localhost
   - name: Backup locally
     community.general.archive:
-      path: "{{ dir }}"
+      path: "{{ dir }}/*"
       dest: "{{ local_path }}/{{ local_name }}"
       format: gz
       force_archive: true
@@ -33,4 +33,5 @@
     ansible.builtin.fetch:
       src: "{{ local_path }}/{{ local_name }}"
       dest: "{{ remote_path }}/{{ remote_name }}"
+      flat: true
 ...

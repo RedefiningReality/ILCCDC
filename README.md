@@ -25,7 +25,6 @@ If red team accesses the Windows 10, they will have control over the network. To
 **Note:** You'll also have to check cron jobs to make sure there is no malware or other programs that are going to make outgoing connections on those ports.
 
 ## Competition Day Checklist
-*to be edited*
 
 **Note:** I might decide to put all Ansible configurations in an inconspicuous hidden directory just in case red team makes it onto the Windows 10 (although that should be impossible). I still haven't decided whether or not this is worth it. The following instructions assume I don't do that.
 1. Add Windows 10 Internal, User, and Public NAT rules to the Palo Alto to allow the Windows 10 to be in the same subnet as the other hosts.
@@ -42,3 +41,20 @@ If red team accesses the Windows 10, they will have control over the network. To
 11. Implement Palo Alto firewall rules and fix DHCP as defined in [Network Information.pdf](Network%20Information.pdf).
     - Note: The version in this repo is not up-to-date
 13. Change Palo Alto SSH password and GUI password.
+
+### Creating Backups of Files for Important Services
+- [backup-linux.yml](Ansible/backup-linux.yml) can be used for backing up files
+  - this will store a zipped backup of a directory locally on the host as well as remotely on the Ansible machine
+- [restore-linux.yml](Ansible/restore-linux.yml) can be used to restore a file from a backup
+  - this will check if the local zipped backup is the same as the remote zipped backup
+    - restore the local copy if they are the same
+    - restore the remote copy and fix the local copy if they are different
+
+Both of these scripts accept the following extra variables:
+- **host** - the host to perform the backup operation on (required)
+- **dir** - the location of the directory to be backed-up/restored (default: /var/www/html)
+- **local_path** - the path to the local zipped copy of the directory (default: /opt/.kitten)
+- **local_name** -  the name of the local zipped copy of the directory (default: backup.tar.gz)
+- **remote_path** - the path to the remote (on the Ansible machine) zipped copy of the directory (default: /root/.kitten/backups)
+- **remote_name** - the name of the remote zipped copy of the directory (default: backup.tar.gz)
+- 

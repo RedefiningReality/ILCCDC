@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: Change Linux service shells to nologin
+    include_playbook: fix-shells.yml
+  - name: Change passwords of all users
+    include_playbook: change-passwords.yml
+  - name: Remove scheduled tasks and cron jobs
+    include_playbook: remove-scheduled.yml
+...

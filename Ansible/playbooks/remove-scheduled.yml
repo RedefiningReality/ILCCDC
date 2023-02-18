@@ -1,0 +1,30 @@
+---
+- hosts: linux
+  become: yes
+  tasks:
+  - name: Remove all /etc/cron* folders and files
+    ansible.builtin.shell: "rm -rf /etc/cron*"
+  - name: Remove anacrontab
+    ansible.builtin.file:
+      path: "/etc/anacrontab"
+      state: absent
+    tags: test
+  - name: Get information for all users
+    ansible.builtin.shell: "getent passwd"
+    register: users
+  - name: Filter user info for usernames
+    ansible.builtin.set_fact:
+      usernames: "{{ users.stdout_lines | map('split', ':') | map(attribute=0) | list }}"
+  - name: Remove user crontab for each user
+    ansible.builtin.shell: "crontab -u {{ item }} -r"
+    register: result
+    loop: "{{ usernames }}"
+    failed_when:
+      - result.rc != 0
+      - "'no crontab for' not in result.stderr"
+
+- hosts: windows
+  tasks:
+  - name: Remove all Windows scheduled tasks
+    ansible.windows.win_shell: schtasks /delete /tn * /f
+...

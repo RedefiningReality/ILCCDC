@@ -1,0 +1,45 @@
+windows2016 ansible_host=172.20.240.10 ansible_winrm_port=5985
+debian ansible_host=172.20.240.20 ansible_become_method=su
+ubuntu14 ansible_host=172.20.242.10
+windows2012 ansible_host=172.20.242.200 ansible_winrm_port=5986
+workstation ansible_host=172.20.242.101
+centos7 ansible_host=172.20.241.30
+fedora21 ansible_host=172.20.241.40
+windows10 ansible_host=127.0.0.1 ansible_winrm_port=5985
+
+[internal]
+windows2016
+debian
+
+[user]
+ubuntu14
+windows2012
+workstation
+
+[public]
+centos7
+fedora21
+
+[external]
+windows10
+
+[windows]
+windows2016
+windows2012
+windows10
+
+[linux]
+debian
+ubuntu14
+workstation
+centos7
+fedora21
+
+[windows:vars]
+ansible_connection=winrm
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
+
+[linux:vars]
+ansible_connection=ssh
+ansible_private_key_file=~/.ssh/ansible_id_rsa

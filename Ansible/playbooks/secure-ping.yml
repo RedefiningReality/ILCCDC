@@ -1,0 +1,16 @@
+---
+- hosts: linux
+  become: yes
+  vars_files:
+    - vault.yml
+  tasks:
+  - name: Ping Linux
+    ansible.builtin.ping:
+
+- hosts: windows
+  vars_files:
+    - vault.yml
+  tasks:
+  - name: Ping Windows
+    ansible.windows.win_ping:
+...

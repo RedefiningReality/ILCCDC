@@ -1,0 +1,44 @@
+windows2016 ansible_host=172.20.240.10 ansible_user=Administrator ansible_password=!Changeme123
+debian ansible_host=172.20.240.20 ansible_user=sysadmin ansible_password=changeme ansible_become_method=su ansible_become_password=changeme
+ubuntu14 ansible_host=172.20.242.10 ansible_user=sysadmin ansible_password=changeme ansible_become_password=changeme
+windows2012 ansible_host=172.20.242.200 ansible_user=Administrator ansible_password=!Password123
+workstation ansible_host=172.20.242.101 ansible_user=sysadmin ansible_password=changeme ansible_become_password=changeme
+centos7 ansible_host=172.20.241.30 ansible_user=sysadmin ansible_password=changeme ansible_become_method=su ansible_become_password=changeme
+fedora21 ansible_host=172.20.241.40 ansible_user=root ansible_password=!Password123
+windows10 ansible_host=127.0.0.1 ansible_user=minion ansible_password=kingbob
+
+[internal]
+windows2016
+debian
+
+[user]
+ubuntu14
+windows2012
+workstation
+
+[public]
+centos7
+fedora21
+
+[external]
+windows10
+
+[windows]
+windows2016
+windows2012
+windows10
+
+[linux]
+debian
+ubuntu14
+workstation
+centos7
+fedora21
+
+[windows:vars]
+ansible_connection=winrm
+ansible_winrm_port=5985
+ansible_winrm_transport=ntlm
+
+[linux:vars]
+ansible_connection=ssh

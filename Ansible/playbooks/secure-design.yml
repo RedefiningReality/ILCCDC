@@ -1,0 +1,104 @@
+---
+- hosts: linux
+  become: yes
+  vars:
+    username: kitten
+    password: changeme
+    group: sudo
+  tasks:
+  - name: Set sudo group to wheel for CentOS and Fedora hosts
+    ansible.builtin.set_fact:
+      group: wheel
+    when: ansible_distribution == "CentOS" or ansible_distribution == "Fedora"
+    tags: [ user, linux ]
+  - name: Create Ansible user on Linux hosts
+    ansible.builtin.user:
+      name: "{{ username }}"
+      password: "{{ password | password_hash('sha512') }}"
+      createhome: yes
+      shell: /bin/bash
+      groups: "{{ group }}"
+    tags: [ user, linux ]
+  - name: Set root password on Debian (doesn't support sudo)
+    ansible.builtin.user:
+      name: "root"
+      password: "{{ password | password_hash('sha512') }}"
+    tags: [ user, linux ]
+  - name: Install Ansible SSH key on Linux hosts
+    ansible.posix.authorized_key:
+      user: "{{ username }}"
+      state: present
+      key: "{{ lookup('file', '~/.ssh/ansible_id_rsa.pub') }}"
+    tags: [ ssh, user, linux ]
+  - name: Disable password authentication on Linux hosts
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#?PasswordAuthentication'
+      line: 'PasswordAuthentication no'
+      state: present
+    notify: restart ssh
+    tags: [ ssh, harden, linux ]
+  - name: Disable root SSH login on Linux hosts
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#?PermitRootLogin'
+      line: 'PermitRootLogin no'
+      state: present
+    notify: restart ssh
+    tags: [ ssh, harden, linux ]
+  handlers:
+  - name: restart ssh
+    service:
+      name: "{{ 'ssh' if ansible_distribution == 'Ubuntu' else 'sshd' }}"
+      state: restarted
+
+- hosts: windows
+  vars:
+    username: kitten
+    password: changeme
+  tasks:
+  - name: Create Ansible user on Windows hosts
+    ansible.windows.win_user:
+      name: "{{ username }}"
+      password: "{{ password }}"
+      state: present
+      groups: Administrators
+    ignore_errors: true
+    tags: [ user, windows ]
+  - name: Disable unused authentication types and set strict hardening level on Windows hosts
+    ansible.windows.win_shell: |
+       Set-Item -Path "WSMan:\localhost\Service\Auth\Basic" -Value $false
+       Set-Item -Path "WSMan:\localhost\Service\Auth\Kerberos" -Value $false
+       Set-Item -Path "WSMan:\localhost\Service\Auth\Certificate" -Value $false
+       Set-Item -Path "WSMan:\localhost\Service\Auth\CredSSP" -Value $false
+       Set-Item -Path "WSMan:\localhost\Service\Auth\CbtHardeningLevel" -Value Strict
+    tags: [ powershell, windows ]
+
+- hosts: windows2012
+  gather_facts: no
+  vars:
+    script_path: "C:\\Windows\\Temp\\script.ps1"
+  tasks:
+  - name: Download Ansible remoting PowerShell script
+    ansible.windows.win_get_url:
+      url: "http://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
+      dest: "{{ script_path }}"
+    when: inventory_hostname != 'windows10'
+    tags: [ script, windows ]
+  - name: Prepare Windows 2012 WinRM over HTTPS using script
+    ansible.windows.win_shell: "{{ script_path }} -DisableBasicAuth -Verbose"
+    register: output
+    when: inventory_hostname != 'windows10'
+    tags: [ script, windows ]
+  - name: Print results of previous operation
+    ansible.builtin.debug:
+      var: output.stdout_lines
+    when: inventory_hostname != 'windows10'
+    tags: [ script, debug, windows ]
+  - name: Remove Ansible remoting PowerShell script (no longer needed)
+    ansible.windows.win_file:
+      path: "{{ script_path }}"
+      state: absent
+    when: inventory_hostname != 'windows10'
+    tags: [ script, windows ]
+...

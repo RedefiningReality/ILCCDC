@@ -1,0 +1,33 @@
+---
+- hosts: linux
+  become: yes
+  vars:
+    disabled: /usr/sbin/nologin
+  tasks:
+  - name: Set disabled path to '/sbin/nologin' for CentOS and Fedora hosts
+    ansible.builtin.set_fact:
+      disabled: /sbin/nologin
+    when: ansible_distribution == "CentOS" or ansible_distribution == "Fedora"
+  - name: Get information for all service users (ID < 1000) with a valid shell
+    ansible.builtin.shell: "getent passwd | grep -vE '[1-9][0-9]{3,}' | grep -vE 'nologin|false|sync|halt|shutdown'"
+    register: users
+    failed_when:
+      - users.rc != 0
+      - users.stderr != ""
+    changed_when: users.rc == 0
+  - name: Filter user info for usernames
+    ansible.builtin.set_fact:
+      usernames: "{{ users.stdout_lines | map('split', ':') | map(attribute=0) | list }}"
+  - name: Remove root user from Debian list (sudo not supported so we have to login as root)
+    ansible.builtin.set_fact:
+      usernames: "{{ usernames | reject('search', 'root') }}"
+    when: ansible_distribution == "Debian"
+  - name: "Display users whose shell will be switched to nologin"
+    ansible.builtin.debug:
+      var: usernames
+  - name: Disable shell for acquired users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      shell: "{{ disabled }}"
+    loop: "{{ usernames }}"
+...

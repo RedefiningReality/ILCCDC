@@ -20,6 +20,9 @@
       get_attributes: false
       get_mime: false
     register: remote
+    delegate_to: localhost
+  - name: Remove existing files
+    ansible.builtin.shell: "rm -rf {{ dir }}/*"
   - name: Restore local backup
     ansible.builtin.unarchive:
       src: "{{ local_path }}/{{ local_name }}"
@@ -28,7 +31,7 @@
       mode: 0755
       owner: root
       group: root
-    when: remote.stat.checksum == local.stat.checksum
+    when: local.stat.exists and remote.stat.checksum == local.stat.checksum
   - name: Restore remote backup
     ansible.builtin.unarchive:
       src: "{{ remote_path }}/{{ remote_name }}"
@@ -36,7 +39,7 @@
       mode: 0755
       owner: root
       group: root
-    when: remote.stat.checksum != local.stat.checksum
+    when: not local.stat.exists or remote.stat.checksum != local.stat.checksum
   - name: Fix local backup
     ansible.builtin.copy:
       src: "{{ remote_path }}/{{ remote_name }}"
@@ -44,5 +47,5 @@
       owner: root
       group: root
       mode: 0600
-    when: remote.stat.checksum != local.stat.checksum
+    when: not local.stat.exists or remote.stat.checksum != local.stat.checksum
 ...

@@ -43,9 +43,9 @@ If red team accesses the Windows 10, they will have control over the network. To
 13. Change Palo Alto SSH password and GUI password.
 
 ### Creating Backups of Files for Important Services
-- [backup-linux.yml](Ansible/backup-linux.yml) can be used for backing up files
+- [backup-linux.yml](Ansible/playbooks/backup-linux.yml) can be used for backing up files
   - this will store a zipped backup of a directory locally on the host as well as remotely on the Ansible machine
-- [restore-linux.yml](Ansible/restore-linux.yml) can be used to restore a file from a backup
+- [restore-linux.yml](Ansible/playbooks/restore-linux.yml) can be used to restore a file from a backup
   - this will check if the local zipped backup is the same as the remote zipped backup
     - restore the local copy if they are the same
     - restore the remote copy and fix the local copy if they are different

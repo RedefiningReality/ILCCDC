@@ -57,4 +57,3 @@ Both of these scripts accept the following extra variables:
 - **local_name** -  the name of the local zipped copy of the directory (default: backup.tar.gz)
 - **remote_path** - the path to the remote (on the Ansible machine) zipped copy of the directory (default: /root/.kitten/backups)
 - **remote_name** - the name of the remote zipped copy of the directory (default: backup.tar.gz)
-- 

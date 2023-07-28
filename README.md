@@ -22,7 +22,7 @@ This means there are going to be two Ansible configurations:
 ### Potential Risks
 If red team accesses the Windows 10, they will have control over the network. To protect against this, we implement a firewall on the Windows 10 that doesn't allow any incoming connections and only allows outgoing connections on the ports specifically required for Ansible (tcp/22, tcp/5985, tcp/5986).
 
-**Note:** You'll also have to check cron jobs to make sure there is no malware or other programs that are going to make outgoing connections on those ports.
+**Note:** You'll also have to check scheduled tasks to make sure there is no malware or other programs that are going to make outgoing connections on those ports.
 
 ## Competition Day Checklist
 

@@ -1,5 +1,5 @@
 # ILCCDC
-Repository for scripts and checklists for the Illinois Tech Cyberhawks CCDC team
+Repository for scripts and checklists for the Illinois Tech Cyberhawks CCDC team. This is a very "high-tech" solution for a "low-tech" problem. During the competition, we did not have enough time to complete all the steps mentioned here, so we have since abandoned this strategy in favor of per-machine checklists. However, there are plenty potentially useful Ansible scripts here, so I decided to keep this repository for that reason.
 
 ## The Big Idea
 Writing hardening scripts for every machine would require accessing each of them, downloading this repo, figuring out which script is relevant to each machine, and running only those. This seems unnecessarily time consuming, and gives red team a better chance of attacking us before all our hardening is complete.
